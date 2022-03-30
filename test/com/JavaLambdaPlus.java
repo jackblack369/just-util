@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.Test;
+package com;
+
+import org.junit.Test;
 
 import java.lang.annotation.Repeatable;
 import java.time.Clock;
