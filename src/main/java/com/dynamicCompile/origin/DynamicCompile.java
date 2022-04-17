@@ -1,4 +1,4 @@
-package com.dynamicCompile;
+package com.dynamicCompile.origin;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -11,13 +11,13 @@ public class DynamicCompile {
     public static void main(String[] args) throws IOException {
 
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        int result = compiler.run(null, null, null, "/Users/dongwei/javaer/just-util/src/main/java/com/dynamicCompile/Helloworld.java");
+        int result = compiler.run(null, null, null, "/Users/dongwei/javaer/just-util/src/main/java/com/dynamicCompile/origin/Helloworld.java");
         System.out.println(result==0?"Compile successfully":"Compile failed");
 
         try {
             URL[] urls = new URL[]{new URL("file:/Users/dongwei/javaer/just-util/src/main/java")};
             URLClassLoader loader = new URLClassLoader(urls);
-            Class<?> c = loader.loadClass("com.dynamicCompile.Helloworld");
+            Class<?> c = loader.loadClass("com.dynamicCompile.origin.Helloworld");
             Method m = c.getMethod("main", String[].class);
             m.invoke(null, (Object)new String[]{});//Objects called by static methods without thanks
             //Reason for adding Object cast

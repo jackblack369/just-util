@@ -1,4 +1,4 @@
-package com.dynamicCompile;
+package com.dynamicCompile.origin;
 
 public class Helloworld {
     public static void main(String[] args) {
