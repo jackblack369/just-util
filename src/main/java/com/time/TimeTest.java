@@ -4,9 +4,11 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 /**
  * @author dongwei
@@ -67,6 +69,26 @@ public class TimeTest {
         System.out.println(calendar.get(Calendar.HOUR_OF_DAY));
         System.out.println(calendar.get(Calendar.MINUTE));
 
+    }
+
+    @Test
+    public void getStartTime() {
+        String dateFormat = "HHmm";
+        String originTime = "01" + (new Random().nextInt(59 - 10) + 10);
+        Duration period = Duration.ofDays(1);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        long startTime = 0;
+        try {
+            startTime = simpleDateFormat.parse(originTime).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("currentTime:"+ System.currentTimeMillis() +", startTime:" + startTime);
+        if (System.currentTimeMillis() > startTime) {
+            startTime = startTime + (((System.currentTimeMillis() - startTime) / period.toMillis() + 1) * period.toMillis());
+        }
+        System.out.println("delay time:"+Duration.ofMillis(startTime - System.currentTimeMillis()).toMillis());
     }
 
     public static void main(String[] args) throws ParseException{
