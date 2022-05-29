@@ -42,8 +42,4 @@ public class ScheduelUtil {
     }
 
 
-    @Test
-    public void testScheduledExecutorService(){
-        ScheduledExecutorService scheduledExecutorService = new
-    }
 }
