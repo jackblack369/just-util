@@ -21,20 +21,20 @@ public class DemoCombine {
     public static CustRankResult2 genResult(){
 
         CustRankOpun2 root = CustRankOpun2.builder()
-                .OPUN_COD("910000000")
+                .OPUN_COD("9100000000")
                 .RPT_MANAGE_BRH("900000000")
                 .LIST_CUST(genRoot())
                 .build();
 
         CustRankOpun2 jinna = CustRankOpun2.builder()
                 .OPUN_COD("9103000000")
-                .RPT_MANAGE_BRH("910000000")
+                .RPT_MANAGE_BRH("9100000000")
                 .LIST_CUST(genJinan())
                 .build();
 
         CustRankOpun2 rizhao = CustRankOpun2.builder()
                 .OPUN_COD("9101000000")
-                .RPT_MANAGE_BRH("910000000")
+                .RPT_MANAGE_BRH("9100000000")
                 .LIST_CUST(genRizhao())
                 .build();
 
@@ -155,7 +155,7 @@ public class DemoCombine {
 
     private static CustRankResult2 recombine(CustRankResult2 queryResult) {
         List<CustRankOpun2> branchOpuns = queryResult.getLIST_OPUN()
-                .stream().filter(opun -> opun.getRPT_MANAGE_BRH().equals("910000000"))
+                .stream().filter(opun -> opun.getRPT_MANAGE_BRH().equals("9100000000"))
                 .filter(opun -> opun.getLIST_CUST()!=null)
                 .collect(Collectors.toList());
 
@@ -170,7 +170,7 @@ public class DemoCombine {
                 .filter(cust -> cust.getTradeType().equals("1"))
                 .filter(distinctByKey(CustInfo2::unionKey))
                 .sorted(Comparator.comparing(CustInfo2::getTradeAmt).reversed())
-                .limit(2)
+                .limit(3)
                 .collect(Collectors.toList());
 
 //        System.out.println("fuCust:{}"+ fuCusts);
@@ -181,7 +181,7 @@ public class DemoCombine {
                 .filter(cust -> cust.getTradeType().equals("0"))
                 .filter(distinctByKey(CustInfo2::unionKey))
                 .sorted(Comparator.comparing(CustInfo2::getTradeAmt).reversed())
-                .limit(2)
+                .limit(3)
                 .collect(Collectors.toList());
 //
         List<CustInfo2> topCusts = Stream.of(fuCusts,shouCusts)
@@ -189,7 +189,7 @@ public class DemoCombine {
                 .collect(Collectors.toList());
 
         queryResult.getLIST_OPUN().stream()
-                .filter(opun -> opun.getOPUN_COD().equals("910000000"))
+                .filter(opun -> opun.getOPUN_COD().equals("9100000000"))
                 .findFirst()
                 .get().setLIST_CUST(topCusts);
 

@@ -38,12 +38,13 @@ public class TimeTest {
         res = String.valueOf(ts);
         return res;
     }
-    public static long dateToStamp2(String s) throws ParseException {
-        String res;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = simpleDateFormat.parse(s);
+
+    @Test
+    public void dateToStamp2() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = simpleDateFormat.parse("20220905160008");
         long ts = date.getTime();
-        return ts;
+        System.out.println(ts);
     }
 
     /*
@@ -68,6 +69,9 @@ public class TimeTest {
 
         System.out.println(calendar.get(Calendar.HOUR_OF_DAY));
         System.out.println(calendar.get(Calendar.MINUTE));
+        calendar.set(Calendar.MINUTE, 1);
+        System.out.println(calendar.get(Calendar.MINUTE));
+        System.out.println(calendar.getTime());
 
     }
 

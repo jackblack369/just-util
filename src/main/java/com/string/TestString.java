@@ -1,5 +1,7 @@
 package com.string;
 
+import org.junit.Test;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +10,12 @@ import java.util.regex.Pattern;
  * 2018/8/7 9:32
  **/
 public class TestString {
+
+    @Test
+    public void test4() {
+        System.out.println("".toString());
+    }
+
     /**
      * 判断是否含有特殊字符
      *
