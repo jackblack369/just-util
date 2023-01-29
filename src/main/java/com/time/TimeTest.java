@@ -95,6 +95,65 @@ public class TimeTest {
         System.out.println("delay time:"+Duration.ofMillis(startTime - System.currentTimeMillis()).toMillis());
     }
 
+    @Test
+    public void testYear() throws Exception {
+        Calendar record = new GregorianCalendar();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        record.setTime(simpleDateFormat.parse("2021-12-31 09:20:20"));
+        System.out.println("record:" + record.get(Calendar.YEAR));
+        record.add(Calendar.DAY_OF_YEAR, 1);
+        System.out.println("record add 1:" + record.get(Calendar.YEAR));
+
+        Calendar now = Calendar.getInstance();
+        System.out.println("now:" + now.get(Calendar.YEAR));
+
+        System.out.println(now.get(Calendar.YEAR) - record.get(Calendar.YEAR));
+
+        System.out.println(now.get(Calendar.YEAR) - record.get(Calendar.YEAR) == 0 && record.get(Calendar.DAY_OF_YEAR) == 1);
+
+    }
+
+    @Test
+    public void testMonth() throws Exception {
+        Calendar record = new GregorianCalendar();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        record.setTime(simpleDateFormat.parse("2022-12-31 09:20:20"));
+        System.out.println("record:" + record.get(Calendar.YEAR));
+        record.add(Calendar.DAY_OF_YEAR, 1);
+        System.out.println("record add 1:" + record.get(Calendar.YEAR));
+
+        Calendar thisMonth = Calendar.getInstance();
+        //避免年底数据覆盖月末数据(年底也是月末)
+        if (thisMonth.get(Calendar.YEAR) - record.get(Calendar.YEAR) == 0 && thisMonth.get(Calendar.MONTH) == record.get(Calendar.MONTH) && record.get(Calendar.DAY_OF_MONTH) == 1) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+    }
+
+    @Test
+    public void  isTheEndDayBeforeLastYear() throws Exception{
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        calendar.setTime(simpleDateFormat.parse("2022-12-31 09:20:20"));
+        System.out.println("record:" + calendar.get(Calendar.YEAR));
+
+        Calendar cloneCalendar = (Calendar) calendar.clone();
+        cloneCalendar.add(Calendar.YEAR,2);
+        Calendar curCalendar = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        String cloneAddTwoYear = sdf.format(cloneCalendar.getTime());
+        String curDate = sdf.format(curCalendar.getTime());
+        if(cloneAddTwoYear.equals(curDate)){
+            cloneCalendar.add(Calendar.DAY_OF_YEAR,1);
+            System.out.println(cloneCalendar.get(Calendar.DAY_OF_YEAR) == 1);
+        }else {
+            System.out.println("false");
+        }
+
+    }
+
     public static void main(String[] args) throws ParseException{
 //        long time1 = dateToStamp2("2018-08-22 09:20:20");
 //        long time2 = dateToStamp2("2018-08-22 09:22:20");

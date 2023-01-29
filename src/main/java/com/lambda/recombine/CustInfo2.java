@@ -57,4 +57,8 @@ public class CustInfo2{
         return this.custNo+this.getTradeAmt();
     }
 
+    public String deduplicateByKey() {
+        return this.custNo;
+    }
+
 }
