@@ -7,6 +7,7 @@ import redis.clients.jedis.ScanParams;
 import redis.clients.jedis.ScanResult;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -20,11 +21,12 @@ public class Demo1 {
 
 
     @Test
-    public void test2(){
+    public void test2() throws IOException {
+        String content = FileUtils.readFileToString(new File("/Users/dongwei/datacanvas/doc_project/莱商银行/问题排查/20230128-大屏交易笔数忽高忽低/大屏后端实时数据/RT_DC.txt"),"UTF-8");
+//        System.out.println(content);
         Jedis jedis = new Jedis("localhost");
-        jedis.select(1);
-//        jedis.set("test","sccba");
-        jedis.flushDB();
+        jedis.select(0);
+        System.out.println(jedis.set("RT_DC",content));
         jedis.close();
     }
 

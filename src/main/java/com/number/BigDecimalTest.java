@@ -1,5 +1,7 @@
 package com.number;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -62,5 +64,12 @@ public class BigDecimalTest {
         BigDecimal noZeros = value.stripTrailingZeros();
         String result = noZeros.toPlainString();
         System.out.println("result: " + result);
+    }
+
+    @Test
+    public void testCompare(){
+        BigDecimal a = new BigDecimal("2000");
+        BigDecimal b = new BigDecimal("2000");
+        System.out.println(a.compareTo(b));
     }
 }
