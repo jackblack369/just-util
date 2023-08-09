@@ -17,4 +17,10 @@ public class Test1 {
             System.out.println(e);
         });
     }
+
+    @Test
+    public void test2() {
+        String[] channels = {"1","24"};
+        System.out.println(Arrays.stream(channels).anyMatch(channel -> channel.equals("24")));
+    }
 }
