@@ -19,6 +19,17 @@ public class Test1 {
     }
 
     @Test
+    public void test3(){
+        List<String> info = Arrays.asList("dong", "wei", "ren");
+        info.parallelStream().forEach(e-> {
+            if (e.equals("dong")) {
+                return;
+            }
+            System.out.println(e);
+        });
+    }
+
+    @Test
     public void test2() {
         String[] channels = {"1","24"};
         System.out.println(Arrays.stream(channels).anyMatch(channel -> channel.equals("24")));
