@@ -196,6 +196,12 @@
             <artifactId>jcc</artifactId>
             <version>${db2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>6.2.1.RELEASE</version> <!-- 使用最新版本号 -->
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
