@@ -1,4 +1,4 @@
-package com.kafka.sasl;
+package com.kafka.sasl.plaintext;
 
 import org.apache.kafka.clients.producer.*;
 
@@ -11,7 +11,7 @@ import java.util.Properties;
 public class KafkaProducerExample {
     public static void main(String[] args) {
         String bootstrapServers = "172.20.58.93:9092,172.20.58.95:9092";
-        String topic = "demo";
+        String topic = "COMMON";
 
         Properties producerProps = new Properties();
         producerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);

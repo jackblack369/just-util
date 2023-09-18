@@ -1,4 +1,4 @@
-package com.kafka.sasl;
+package com.kafka.sasl.scram;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
