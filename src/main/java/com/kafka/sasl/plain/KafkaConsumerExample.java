@@ -1,4 +1,4 @@
-package com.kafka.sasl.plaintext;
+package com.kafka.sasl.plain;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -12,11 +12,18 @@ import java.util.Properties;
 
 public class KafkaConsumerExample {
     //消费主题名
-//    private final static String TOPIC = "CMACAACA";
     private final static String TOPIC = "demo";
     //消费的kafka集群地址
-//    private final static String BOOTSTRAP_SERVERS = "172.18.244.75:19092,172.18.244.76:19092,172.18.244.77:19092";
-    private final static String BOOTSTRAP_SERVERS = "172.20.58.93:29092,172.20.58.95:29092";
+    //平台测试环境kafka地址
+    private final static String BOOTSTRAP_SERVERS = "172.18.244.236:29092,172.18.244.237:29092,172.18.244.238:29092";
+    //平台生产环境kafka地址
+//    private final static String BOOTSTRAP_SERVERS = "192.1.4.173:29092,192.1.4.174:29092,192.1.4.175:29092,192.1.4.176:29092,192.1.4.177:29092,192.1.4.178:29092";
+
+    //消费者组
+    private final static String GROUP_NAME = "GROUP-BIGDATA";
+    private final static String USERNAME = "qlbuser01";
+    private final static String PASSWORD = "!QAZ2wsx";
+    private final static String OFFSET = "earliest";
 
     private static Consumer<Long, String> createConsumer() {
         final Properties props = new Properties();
@@ -24,18 +31,16 @@ public class KafkaConsumerExample {
                 BOOTSTRAP_SERVERS);
         //消费者组
         props.put(ConsumerConfig.GROUP_ID_CONFIG,
-                "OMS-GROUP");
+                GROUP_NAME);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 StringDeserializer.class.getName());
         //消费数据的偏移量
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, OFFSET);
         props.put("security.protocol", "SASL_PLAINTEXT");
         props.put("sasl.mechanism", "PLAIN");
-//        props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"admin\" password=\"datacanvas\";");
-//        props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"qlb\" password=\"qlbrtdsp\";");
-        props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"oms\" password=\"omsrtdsp\";");
+        props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"" + USERNAME +"\" password=\"" + PASSWORD + "\";");
 
         // Create the consumer using props.
         final Consumer<Long, String> consumer = new KafkaConsumer<>(props);

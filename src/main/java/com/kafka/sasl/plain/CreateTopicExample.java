@@ -1,4 +1,4 @@
-package com.kafka.sasl.plaintext;
+package com.kafka.sasl.plain;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;

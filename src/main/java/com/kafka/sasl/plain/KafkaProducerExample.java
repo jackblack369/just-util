@@ -1,8 +1,4 @@
-package com.kafka.sasl.plaintext;
-
-import org.apache.kafka.clients.producer.*;
-
-import java.util.Properties;
+package com.kafka.sasl.plain;
 
 import org.apache.kafka.clients.producer.*;
 
